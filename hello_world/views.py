@@ -9,12 +9,15 @@ msg = "Hello World!"
 
 @app.route('/')
 def index():
+    if 'name' in request.args:
+        moje_imie = request.args['name']
+    else:
+        moje_imie = 'Ewelina'
     output = request.args.get('output')
     if not output:
         output = PLAIN
     return get_formatted(msg, moje_imie,
-                         output.lower())
-
+                        output.lower())
 
 @app.route('/outputs')
 def supported_output():
